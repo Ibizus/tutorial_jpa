@@ -8,9 +8,7 @@ import org.iesvdm.tutorial.domain.Tutorial;
 import org.iesvdm.tutorial.repository.ComentarioRepository;
 import org.iesvdm.tutorial.repository.TutorialRepository;
 import org.iesvdm.tutorial.util.UtilJPA;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -23,6 +21,7 @@ import java.util.List;
  * TEST ONETOMANY ORPHANREMOVAL, CASCADE.ALL, LAZY
  */
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TutorialComentarioTests {
 
     @Autowired
@@ -119,7 +118,7 @@ public class TutorialComentarioTests {
     @Order(4)
     public void actualizarPorHijo() {
 
-        Tutorial tutorial = tutorialRepository.findById(2L).orElse(null);
+        Tutorial tutorial = tutorialRepository.findById(1L).orElse(null);
 
         //Si se utliza un fetch LAZY, mejor estrategia realizar un join fetch en JPQL
         //y cargar en la colección. NOTA: si utilizas EAGER puedes prescindir de join fetch.
