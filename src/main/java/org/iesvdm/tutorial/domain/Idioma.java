@@ -1,13 +1,13 @@
 package org.iesvdm.tutorial.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.iesvdm.tutorial.serializer.PeliculaSerializer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,8 +17,10 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id", scope = Idioma.class)
 public class Idioma {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +30,7 @@ public class Idioma {
     private String nombre;
 
     @OneToMany(mappedBy = "idioma", fetch = FetchType.EAGER)
-    @JsonIgnore
+    //@JsonIgnore
     //@JsonManagedReference
     private Set<Pelicula> peliculas = new HashSet<>();
 

@@ -20,6 +20,7 @@ import java.util.List;
 /**
  * TEST ONETOMANY ORPHANREMOVAL, CASCADE.ALL, LAZY
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class )
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TutorialComentarioTests {
